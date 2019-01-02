@@ -80,11 +80,13 @@ class BosszhipinDownloaderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
+    def __init__(self, proxy_url):
+        self.proxy_url = proxy_url
 
     @classmethod
     def from_crawler(cls, crawler):
         # This method is used by Scrapy to create your spiders.
-        s = cls()
+        s = cls(proxy_url=crawler.settings.get('PROXY_URL'))
         crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
@@ -142,9 +144,9 @@ class BosszhipinDownloaderMiddleware(object):
         request.headers['User-Agent'] = random.choice(user_agents)
 
         try:
-            proxy_url = 'http://127.0.0.1:5555/random' # 这里改成真实有效的代理池url就可以了
+            # proxy_url = 'http://127.0.0.1:5555/random' # 这里改成真实有效的代理池url就可以了
             # print(proxy_url, '161----------------------')
-            response = requests.get(proxy_url)
+            response = requests.get(self.proxy_url)
             print(response.text, response.status_code, '163================')
             if response.status_code == 200:
                 proxy = response.text.strip()

@@ -5,7 +5,7 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+# import scrapy
 from scrapy import Field, Item
 from scrapy.utils.project import get_project_settings
 
