@@ -45,26 +45,14 @@ DOWNLOAD_DELAY = 3
 #   'Accept-Language': 'en',
 #}
 
-# Enable or disable spider middlewares
-# See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
    'BossZhipin.middlewares.BosszhipinSpiderMiddleware': 543,
 }
 
-# Enable or disable downloader middlewares
-# See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    'BossZhipin.middlewares.BosszhipinDownloaderMiddleware': 543,
 }
 
-# Enable or disable extensions
-# See https://doc.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
-
-# Configure item pipelines
-# See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'BossZhipin.pipelines.BosszhipinPipeline': 300,
 }
@@ -90,6 +78,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-MONGO_URI = '45.249.94.149'
+MONGO_URI = 'localhost'
 MONGO_DB = 'universal'
 

@@ -9,9 +9,12 @@ import scrapy
 from scrapy import Field, Item
 from scrapy.utils.project import get_project_settings
 
-
 class BosszhipinItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     collection = table = get_project_settings().get('BOT_NAME')
     role_description = Field()
+    company_name = Field()
+    publish_time = Field()
+    position_tags = Field()
+    working_location = Field()

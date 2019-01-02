@@ -6,9 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import pymongo
-from time import sleep
-# from scrapy import Request
-# from scrapy.exceptions import DropItem
+# from time import sleep
 
 
 class BosszhipinPipeline(object):
@@ -28,7 +26,7 @@ class BosszhipinPipeline(object):
         self.db = self.client[self.mongo_db]
 
     def process_item(self, item, spider):
-        self.db[item.collection].insert(dict(item))
+        self.db[item.collection].insert_one(dict(item))
         return item
 
     def close_spider(self, spider):

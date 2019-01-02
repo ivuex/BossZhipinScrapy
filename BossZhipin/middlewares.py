@@ -38,10 +38,8 @@ class BosszhipinSpiderMiddleware(object):
         # Must return an iterable of Request, dict or Item objects.
         # print(re.sub('\s{2,}', ' ', response.text), '39----')
         next_atag_lists = response.xpath('//div[@class="info-primary"]/h3[@class="name"]/a')
-        # print(re.search('www.zhipin.com', response.url), '626262##################')
         if(re.search('www.zhipin.com', response.url)):
             print('4343==================')
-            # askciAStockSp = AskciAStockSpider()
             bossSp = BossSpider()
             for next_atag in next_atag_lists:
                 a_href = next_atag.xpath('@href').extract_first('')
@@ -141,23 +139,23 @@ class BosszhipinDownloaderMiddleware(object):
             "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
         ]
 
-        # request.headers = {}
         request.headers['User-Agent'] = random.choice(user_agents)
 
-        # try:
-        #     proxy_url = 'http://127.0.0.1:5555/random'
-        #     # print(proxy_url, '161----------------------')
-        #     response = requests.get(proxy_url)
-        #     print(response.text, response.status_code, '163================')
-        #     if response.status_code == 200:
-        #         proxy = response.text.strip()
-        #         print(proxy, '138-----')
-        #         uri = 'http://{proxy}'.format(proxy=proxy)
-        #         request.meta['proxy'] = uri
-        #         print(request.meta['proxy'], '141---==')
-        # except requests.ConnectionError:
-        #     # return False
-        #     raise('%s cannot be accessed, and it must return random proxy host, maybe with port.' %(proxy_url))
+        try:
+            proxy_url = 'http://127.0.0.1:5555/random' # 这里改成真实有效的代理池url就可以了
+            # print(proxy_url, '161----------------------')
+            response = requests.get(proxy_url)
+            print(response.text, response.status_code, '163================')
+            if response.status_code == 200:
+                proxy = response.text.strip()
+                print(proxy, '138-----')
+                uri = 'http://{proxy}'.format(proxy=proxy)
+                request.meta['proxy'] = uri
+                print(request.meta['proxy'], '141---==')
+        except requests.ConnectionError as e:
+            # return False
+            print('%s cannot be accessed, and it must return random proxy host, maybe with port.' %(proxy_url))
+            raise(e)
 
         return None
 
