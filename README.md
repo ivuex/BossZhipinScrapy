@@ -21,6 +21,7 @@ pip3 install scrapy pymongo requests
 ``` 
 ###### 配置
 ```
+# 如果不设置代理就赋值PROXY_URL为None (不过这样子爬不了多久页就不返回有效响应了)
 PROXY_URL = 'http://{}:{}'.format(your_proxies_api_host, your_proxies_api_port)
 MONGO_URI = 'your_mongodb_host'
 MONGO_DB = 'your_mongodb_port'

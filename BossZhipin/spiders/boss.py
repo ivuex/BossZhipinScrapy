@@ -26,5 +26,5 @@ class BossSpider(CrawlSpider):
             working_location = response.xpath('//div[@class="location-address"]//text()')
             item['working_location'] = working_location and working_location.extract_first() or ''
             role_descriptions = response.xpath('//div[@class="detail-content"]/div[1]//text()')
-            item['role_description'] =  role_descriptions and '\n'.join([item for item in role_descriptions.extract() if '' == item.strip()]) or ''
+            item['role_description'] =  role_descriptions and '\n'.join([item for item in role_descriptions.extract() if item.strip()]) or ''
             yield item

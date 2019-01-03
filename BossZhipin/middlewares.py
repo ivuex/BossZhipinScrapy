@@ -143,6 +143,12 @@ class BosszhipinDownloaderMiddleware(object):
 
         request.headers['User-Agent'] = random.choice(user_agents)
 
+        if self.proxy_url is not None:
+            self.set_http_proxy(request)
+
+        return None
+
+    def set_http_proxy(self, request):
         try:
             # proxy_url = 'http://127.0.0.1:5555/random' # 这里改成真实有效的代理池url就可以了
             # print(proxy_url, '161----------------------')
@@ -156,11 +162,8 @@ class BosszhipinDownloaderMiddleware(object):
                 print(request.meta['proxy'], '141---==')
         except requests.ConnectionError as e:
             # return False
-            print('%s cannot be accessed, and it must return random proxy host, maybe with port.' %(proxy_url))
+            print('%s cannot be accessed, and it must return random proxy host, maybe with port.' %(self.proxy_url))
             raise(e)
-
-        return None
-
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.

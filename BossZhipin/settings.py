@@ -21,7 +21,8 @@ ITEM_PIPELINES = {
    'BossZhipin.pipelines.BosszhipinPipeline': 300,
 }
 
-PROXY_URL = 'http://127.0.0.1:5555'
+# PROXY_URL = 'http://{}:{}'.format('127.0.0.1', '8888')
+PROXY_URL = None
 MONGO_URI = 'localhost'
 MONGO_DB = 'BossZhipin'
 
